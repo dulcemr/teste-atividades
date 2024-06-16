@@ -3,7 +3,7 @@ name: dotnet build exemplo
 on:
   push:
     branches: 
-      - main   # Defina a branch desejada para acionar o workflow
+      - main   # Define a branch desejada para acionar o workflow
   schedule:
     - cron: '0 * * * *'  # Executar a cada hora
 
@@ -13,7 +13,18 @@ jobs:
     runs-on: ubuntu-latest  
 
     steps:
-      - name: Hello Step
-        run: echo "Hello world"
+      - name: checkout.  # Action pré-existente
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16.18
+
+      - name: Install Dependencies
+        run: npm ci
+      - name: Run tests
+        run: npm test
+        
         
             
