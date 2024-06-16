@@ -1,0 +1,19 @@
+name: dotnet build exemplo
+
+on:
+  push:
+    branches: 
+      - main   # Defina a branch desejada para acionar o workflow
+  schedule:
+    - cron: '0 * * * *'  # Executar a cada hora
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  
+
+    steps:
+      - name: Hello Step
+        run: echo "Hello world"
+        
+            
