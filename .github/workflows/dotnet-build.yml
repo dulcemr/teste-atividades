@@ -26,14 +26,7 @@ jobs:
       - name: Run tests
         run: npm test
     
-  task_demo:
-    runs-on: ubuntu-latest
-    if: github.event_name == 'schedule'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2  # Action pré-existente
-
+    
       - name: Execute custom script
         run: |
           echo "Running scheduled task"
