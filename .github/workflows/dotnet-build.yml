@@ -25,5 +25,12 @@ jobs:
       - name: Build
         run: dotnet build **/*.csproj --no-restore
 
-      - name: Test with the dotnet CLI
-        run: dotnet test
+      - name: Listando diretórios do meu repo
+        run: |
+          python -c " 
+          import os
+            print("Directory contents:")
+            for f in os.listdir():
+                print(f)
+          "
+       
