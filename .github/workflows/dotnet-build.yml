@@ -20,10 +20,10 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Install dependencies
-        run: dotnet restore
+        run: dotnet restore **/*.csproj
 
       - name: Build
-        run: dotnet build
-        
+        run: dotnet build **/*.csproj --no-restore
+
       - name: Test with the dotnet CLI
         run: dotnet test
