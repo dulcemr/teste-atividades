@@ -7,42 +7,21 @@ on:
   schedule:
     - cron: '0 * * * *'  # Executar a cada hora
 
-
 jobs:
   build:
-    runs-on: ubuntu-latest  
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '3.1.x', '6.0.x', '8.0.x' ]
 
     steps:
-      - name: checkout.  # Action pré-existente
-        uses: actions/checkout@v2
-
-      - name: Setup Node
-        uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - name: Setup dotnet ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v3
         with:
-          node-version: 16.18
-
-      - name: Install Dependencies
-        run: npm ci
-      - name: Run tests
-        run: npm test
-    
-    
-      - name: Execute custom script
-        run: |
-          node -e "
-            const tasks = [
-              "checar mensagens",
-              "entrar na videochamada",
-              "Revisar pull requests",
-              "atualizar documentação",
-              "Code review",
-              "Testar nova feature",
-              "consertar bugs",
-              "Deploy application"
-            ];
-            const randomIndex = Math.floor(Math.random() * phrases.length);
-            const randomPhrase = phrases[randomIndex];
-            console.log(randomPhrase);
-          "
-                  
-            
+          dotnet-version: ${{ matrix.dotnet-version }}
+      # You can test your matrix by printing the current dotnet version
+      - name: Display dotnet version
+        run: dotnet --version
+     
