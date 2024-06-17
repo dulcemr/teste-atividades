@@ -27,5 +27,5 @@ jobs:
 
       - name: Listando diretórios do meu repo
         run: |
-          python -c " import os; print('Directory contents:'); [print(f) for f in os.listdir('.')]"
+          python -c "import os; print('Directory contents:'); [print(f) for f in os.listdir('.')]"
        
